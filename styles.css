@@ -1,0 +1,1178 @@
+:root {
+            --primary-bg: #2E0505; 
+            --accent-color: #F5E6D3; 
+            --gold: #c6a75e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--accent-color);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 10%; 
+            position: fixed;
+            width: 100%;
+            height: 80px; 
+            z-index: 1000;
+            background: rgba(46, 5, 5, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(198, 167, 94, 0.2);
+        }
+
+        /* --- Navigation Logo Fix --- */
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-img {
+            height: 90px; 
+            width: auto;
+            object-fit: contain;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            /* Keeps the image crisp */
+            image-rendering: -webkit-optimize-contrast; 
+        }
+        
+        .logo-img:hover {
+            transform: scale(1.08);
+        }
+        
+        /* --- Mobile Navigation Height --- */
+        @media (max-width: 768px) {
+            nav {
+                height: 70px; 
+                padding: 0 5%;
+            }
+            .logo-img {
+                height: 70px; 
+            }
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            /* color: var(--accent-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px; */
+            color: var(--accent-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            
+            /* Crucial additions for the hover effect */
+            position: relative;
+            padding: 6px 0;
+            display: inline-block; 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+            letter-spacing: 4px; /* Sophisticated luxury expansion */
+        }
+
+        /* 2. The Gold Underline (The "After" Element) */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0; /* Starts at zero width */
+            height: 1px;
+            background-color: var(--gold);
+            transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* 3. Reveal Underline on Hover */
+        .nav-links a:hover::after {
+            width: 100%; /* Grows to full width */
+        }
+
+        /* Mobile Menu Icon */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+        .menu-icon span { width: 30px; height: 2px; background-color: var(--accent-color); transition: 0.4s; }
+
+        /* --- Mobile Sidebar Fix --- */
+        @media (max-width: 768px) {
+            .menu-icon { 
+                display: flex; 
+                flex-direction: column;
+                gap: 6px;
+                cursor: pointer;
+            }
+            
+            .nav-links {
+                position: fixed;
+                right: -100%; /* Start off-screen */
+                top: 0;
+                height: 100vh;
+                width: 80%; /* Sidebar width */
+                background: #2e0505; /* Solid version of your burgundy */
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+
+            /* When JS adds the 'active' class */
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                margin: 15px 0;
+            }
+            
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px; 
+        }
+        
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            letter-spacing: 15px;
+            text-transform: uppercase;
+            background: linear-gradient(120deg, #f5e6d3 40%, #c6a75e 50%, #f5e6d3 60%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+
+          /* --- High-End Luxury Mission Styling --- */
+          .mission-accent-box {
+            border-top: 1px solid rgba(198, 167, 94, 0.15);
+            border-bottom: 1px solid rgba(198, 167, 94, 0.15);
+            padding: clamp(60px, 10vh, 120px) 20px; 
+            margin: 60px auto;
+            position: relative;
+            max-width: 1200px;
+            /* Subtle background shimmer */
+            background: radial-gradient(circle at center, rgba(198, 167, 94, 0.03) 0%, transparent 70%);
+        }
+
+        .mission-label-centered {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-bg);
+            padding: 0 30px;
+            font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+            letter-spacing: 0.5em; 
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+
+
+        .mission-text-pro strong {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-weight: 700;
+            font-style: italic;
+            /* Subtle gold text-shadow for a "metallic" feel */
+            text-shadow: 0 0 10px rgba(198, 167, 94, 0.2);
+        }
+
+        /* --- High-End Mobile Symmetry Fix --- */
+        .mission-text-pro {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            line-height: 1.8;
+            color: var(--accent-color);
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            
+            /* THE KEY FIXES FOR MOBILE SHAPE: */
+            text-wrap: balance; 
+            word-break: keep-all; 
+        }
+        /* --- Vertical Spacing Polish --- */
+
+        .hero-title {
+            margin-bottom: clamp(2rem, 5vh, 4rem) !important; 
+        }
+
+        .mission-section {
+            margin-bottom: clamp(3rem, 8vh, 5rem) !important;
+        }
+
+        /* Ensure the button has its own breathing room */
+        .cta-button, .btn-outline-light {
+            margin-top: 20px; 
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            
+        }
+
+        @media (max-width: 768px) {
+            .mission-text-pro {
+                font-size: 1.15rem; 
+                line-height: 1.6;
+                padding: 0 10px;
+                
+                /* Forces the text into a clean 'Block' rather than 'Steps' */
+                display: inline-block;
+                width: 100%;
+            }
+            .mission-section {
+                margin-bottom: 40px !important; 
+            }
+            
+            .mission-accent-box {
+                padding: 60px 20px; 
+                margin: 30px 10px;
+            }
+        }
+
+        
+
+
+        
+
+        
+
+      /* --- Professional Vision Split Styling --- */
+        .vision-outer {
+            background-color: #250404;
+            padding: 120px 0;
+            overflow: hidden;
+        }
+
+        .vision-content-wrap {
+            max-width: 550px;
+        }
+
+        .vision-image-frame {
+            position: relative;
+            padding: 20px;
+        }
+
+        .vision-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            filter: brightness(0.7) contrast(1.1) grayscale(30%);
+            border-radius: 2px;
+            transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .vision-label{
+            font-family: 'Montserrat', serif;
+            letter-spacing:4px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            margin-bottom: 50px;
+            text-align: left;
+            position: relative;
+                
+        }
+
+        .vision-label::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px 0;
+        }
+
+        /* The Gold Decorative Border behind the image */
+        .image-accent-border {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 80%;
+            border-top: 1px solid var(--gold);
+            border-right: 1px solid var(--gold);
+            z-index: -1;
+            transform: translate(-10px, 10px);
+            opacity: 0.5;
+        }
+
+        .vision-image-frame:hover .vision-img {
+            filter: brightness(0.9) grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        /* Responsive Mobile Fix */
+        @media (max-width: 991px) {
+            .vision-outer { padding: 80px 20px; width:100%; }
+            .vision-img { height: 350px; }
+            .vision-content-wrap { text-align: center; margin: 0 auto; }
+            .image-accent-border { display: none; } 
+
+
+            .vision-label {
+                text-align: center !important; 
+                font-size: 1.2rem;
+                letter-spacing: 6px;
+                margin: 0 auto 40px auto;
+            }
+        
+          
+            .vision-label::after {
+                width: 60px;
+                margin: 15px auto !important;
+            }
+        }
+
+
+
+          
+
+
+
+        /* --- NEXT SECTION: Featured Portfolio --- */
+        .section-padding { padding: 100px 0; }
+        
+        .section-title {
+            font-family: 'Montserrat', serif;
+            letter-spacing:8px;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+
+        .portfolio-card {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid rgba(245, 230, 211, 0.1);
+            transition: 0.5s;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(70%);
+            transition: 0.5s;
+        }
+
+        .portfolio-card:hover .portfolio-img {
+            filter: grayscale(0%) brightness(100%);
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, var(--primary-bg));
+            width: 100%;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .menu-icon { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+                background: #3d0707; flex-direction: column; justify-content: center;
+                align-items: center; transition: 0.5s;
+            }
+            .nav-links.active { right: 0; }
+            .menu-icon.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .menu-icon.active span:nth-child(2) { opacity: 0; }
+            .menu-icon.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        }
+
+
+        /* --- Ultra-Responsive Strategy Grid --- */
+    .strategy-grid {
+        display: grid;
+        /* This ensures 3 columns on desktop, 2 on tablet, and 1 on mobile automatically */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .strategy-card {
+        padding: clamp(30px, 5vw, 50px); 
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(198, 167, 94, 0.1);
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .strategy-card:hover {
+        background: rgba(198, 167, 94, 0.05);
+        border-color: var(--gold);
+        transform: translateY(-8px);
+    }
+
+    /* Responsive Typography inside Cards */
+    .strategy-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        z-index: 2;
+    }
+
+    .strategy-card p {
+        font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+        line-height: 1.7;
+        color: var(--text-muted);
+        text-wrap: balance; 
+        z-index: 2;
+    }
+
+    /* Background Number - Responsive Position */
+    .strategy-num {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 700;
+        color: rgba(198, 167, 94, 0.08);
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        pointer-events: none;
+    }
+
+    /* --- Mobile Specific Tweaks --- */
+    @media (max-width: 768px) {
+        .strategy-grid {
+            gap: 20px;
+            padding: 0 10px;
+        }
+        
+        .strategy-card {
+            text-align: center; 
+            align-items: center;
+        }
+
+        .strategy-num {
+            position: relative; 
+            top: 0;
+            right: 0;
+            margin-bottom: 10px;
+            display: block;
+        }
+    }
+    /* --- Pure CSS Stylish Carousel (No JS) --- */
+    .testimonial-viewport {
+        padding: 80px 0;
+        background-color: var(--primary-bg);
+        overflow: hidden;
+    }
+
+    .testimonial-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory; /* This creates the 'Carousel' feel */
+        scroll-behavior: smooth;
+        gap: 30px;
+        padding: 40px 20px;
+        /* Hide scrollbar for clean look */
+        scrollbar-width: none; 
+    }
+
+    .testimonial-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .testimonial-card {
+        flex: 0 0 450px; /* Card width on desktop */
+        scroll-snap-align: center; /* Snaps card to middle */
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(198, 167, 94, 0.2);
+        padding: 50px;
+        position: relative;
+        transition: all 0.4s ease;
+    }
+
+    .testimonial-card:hover {
+        border-color: var(--gold);
+        background: rgba(198, 167, 94, 0.05);
+        transform: translateY(-5px);
+    }
+
+    /* Decorative Gold Quote Mark */
+    .testimonial-card::after {
+        content: "“";
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        font-size: 6rem;
+        color: var(--gold);
+        opacity: 0.1;
+        font-family: serif;
+    }
+
+    .brand-name {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 25px;
+        display: block;
+    }
+
+    .review-text {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #fff;
+        margin-bottom: 30px;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 20px;
+    }
+
+    .user-details h4 {
+        font-size: 0.9rem;
+        margin: 0;
+        color: #fff;
+    }
+
+    .user-details p {
+        font-size: 0.75rem;
+        color: var(--gold);
+        margin: 0;
+        opacity: 0.8;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .testimonial-card {
+            flex: 0 0 85%; /* Shows one card and a bit of the next */
+            padding: 30px;
+        }
+        .review-text { font-size: 1rem; }
+    }
+
+
+    /* about section  */
+    .about-teaser { padding: 100px 0; background-color: var(--primary-bg); }
+    .teaser-text { 
+        font-size: 1.1rem; 
+        line-height: 1.8; 
+        color: var(--accent-color); 
+        margin-bottom: 30px; 
+        border-left: 2px solid var(--gold);
+        padding-left: 25px;
+    }
+    .read-more-btn {
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 0.8rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+    .read-more-btn:hover { letter-spacing: 5px; color: #fff; }
+
+    /* this css for about.html */
+    .full-about-page { padding: 120px 0; background-color: var(--primary-bg); }
+            .display-title { font-family: 'Playfair Display', serif; font-size: 4rem; color: #fff; }
+            .gold-line { width: 80px; height: 3px; background: var(--gold); margin-top: 20px; }
+            
+            .content-row { 
+                max-width: 800px; 
+                margin: 60px auto; 
+                font-size: 1.15rem; 
+                line-height: 2; 
+                color: rgba(255,255,255,0.8); 
+            }
+            
+            .about-parallax-img {
+                height: 450px;
+                background-attachment: fixed; /* Parallax Effect */
+                background-position: center;
+                background-size: cover;
+                margin: 80px 0;
+                border: 1px solid rgba(198, 167, 94, 0.2);
+            }
+            
+            .final-statement { 
+                color: var(--gold); 
+                font-family: 'Playfair Display', serif; 
+                font-size: 1.5rem; 
+                margin-top: 40px; 
+            }
+    /* end of the about.html */
+
+
+    /* --- ZIWERD Contact & Footer --- */
+.contact-section {
+    padding: 120px 0;
+    background-color: var(--primary-bg);
+    border-top: 1px solid rgba(198, 167, 94, 0.1);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+}
+
+.contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.contact-item {
+    margin-bottom: 30px;
+}
+
+.contact-item span {
+    display: block;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+}
+
+.contact-item p, .contact-item a {
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.contact-item a:hover {
+    color: var(--gold);
+    padding-left: 10px;
+}
+
+/* Minimalist Form */
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 0;
+    margin-bottom: 30px;
+    color: #fff;
+    outline: none;
+    transition: 0.4s;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-bottom: 1px solid var(--gold);
+}
+
+.submit-btn {
+    background: var(--gold);
+    color: #2e0505;
+    border: none;
+    padding: 15px 40px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.submit-btn:hover {
+    background: #fff;
+    letter-spacing: 5px;
+}
+
+/* --- Mobile Responsive Fixes --- */
+@media (max-width: 768px) {
+    /* 1. Stack the grid vertically */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px; /* Reduce gap for smaller screens */
+    }
+
+    /* 2. Adjust padding for mobile */
+    .contact-section {
+        padding: 60px 20px;
+    }
+
+    /* 3. Shrink the heading so it doesn't overflow */
+    .contact-info h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+
+    /* 4. Adjust font sizes for readability */
+    .contact-item p, .contact-item a {
+        font-size: 1rem;
+    }
+
+    /* 5. Make the button full-width for easier tapping */
+    .submit-btn {
+        width: 100%;
+        padding: 18px 0;
+    }
+}
+
+/* Fix for very small phones (under 480px) */
+@media (max-width: 480px) {
+    .contact-info h2 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+}
+
+
+
+
+/* --- ZIWERD PERFECTION FOOTER --- */
+.perfect-footer {
+    background-color: #250404; /* Your Nav Burgundy */
+    padding: 40px 0 20px 0;
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    border-top: 1px solid rgba(198, 167, 94, 0.2);
+}
+
+.footer-top-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+/* The "Statement" Brand */
+.footer-brand-logo img {
+    /* This controls the size - adjust 180px to fit your specific logo shape */
+    height: auto;
+    max-width: 180px; 
+    display: block;
+    margin: 0;
+    transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    
+    /* Optional: This gives a white logo a subtle gold tint to match your theme */
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.footer-brand-logo:hover img {
+    transform: translateY(-5px);
+    filter: brightness(1.2) drop-shadow(0 5px 15px rgba(198, 167, 94, 0.3));
+}
+
+/* Ensure the sub-text "Digital Excellence" stays aligned */
+.footer-logo-main p {
+    font-size: 0.6rem;
+    letter-spacing: 5px;
+    margin-top: 20px; /* Space between logo image and text */
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+/* Mobile Responsive adjustment for the Logo */
+@media (max-width: 768px) {
+    .footer-brand-logo img {
+        max-width: 140px; /* Slightly smaller on mobile */
+    }
+    .footer-logo-main {
+        margin-bottom: 40px; /* Adds space before links on mobile */
+    }
+    
+}
+
+/* The "Information Grid" */
+.footer-info-cluster {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    text-align: left;
+}
+
+.info-box h5 {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 35px;
+}
+
+.info-box a {
+    display: block;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 15px;
+    transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 0.7;
+}
+
+.info-box a:hover {
+    color: var(--gold);
+    opacity: 1;
+    transform: translateX(10px);
+}
+
+/* --- THE SIGNATURE BAR --- */
+.footer-signature-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(198, 167, 94, 0.1);
+    padding-top: 50px;
+}
+
+.copyright-text {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 2px;
+}
+
+/* THE DEVELOPED BY PERFECTION */
+.developed-by {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.4s;
+}
+
+
+
+.developed-by:hover .dev-name {
+    background: var(--gold);
+    color: #2e0505;
+    border-color: var(--gold);
+    letter-spacing: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+    /* Top section */
+    .footer-top-split {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Logo */
+    .footer-brand-logo img {
+        max-width: 140px;
+        margin: 0 auto;
+    }
+
+    .footer-logo-main {
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .footer-logo-main p {
+        text-align: center;
+        letter-spacing: 3px;
+    }
+
+    /* Info grid becomes single column */
+    .footer-info-cluster {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        text-align: center;
+        padding-left: 0;
+        width: 100%;
+    }
+
+    .info-box {
+        text-align: center;
+    }
+
+    .info-box a:hover {
+        transform: translateX(0); /* remove side move for center layout */
+    }
+
+    /* Bottom bar */
+    .footer-signature-bar {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .developed-by {
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* --- Floating WhatsApp Button --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(198, 167, 94, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(198, 167, 94, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+}
+
+.whatsapp-float svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--gold);
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    background-color: var(--gold);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-float:hover svg {
+    fill: var(--primary-bg); 
+}
+
+/* The "Attention" Pulse */
+.whatsapp-float::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    opacity: 0.5;
+    animation: whatsapp-pulse 2s infinite;
+}
+
+@keyframes whatsapp-pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* --- Results / Metrics Section: Optimized --- */
+.results-outer {
+    padding: 100px 0;
+    background-color: var(--primary-bg);
+}
+
+.results-capsule {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(198, 167, 94, 0.2);
+    border-radius: 100px; 
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+    /* Clean background implementation */
+    background-image: url('https://www.transparenttextures.com/patterns/city-skyline.png');
+    background-position: bottom center;
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+
+.metric-box {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container for Number + Suffix to prevent shifting */
+.metric-number-wrapper {
+    display: flex;
+    align-items: baseline; 
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.metric-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.metric-number-suffix {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem); 
+    color: var(--gold);
+    margin-left: 2px;
+    font-weight: 700;
+}
+
+.metric-text {
+    font-size: 0.75rem; 
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* Mobile Responsiveness Fixes */
+@media (max-width: 991px) {
+    .results-capsule {
+        border-radius: 40px; 
+        padding: 50px 20px;
+        margin: 0 15px; 
+    }
+    .metric-box {
+        margin-bottom: 40px;
+    }
+    .metric-box:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* --- Full Screen Pre-loader --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--primary-bg); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.loader-content {
+    text-align: center;
+    position: relative;
+}
+
+.loader-logo {
+    width: 120px; 
+    height: auto;
+    margin-bottom: 20px;
+    animation: logo-pulse 3s ease-in-out infinite;
+}
+
+/* Subtle gold loading bar */
+.loader-line {
+    width: 100px;
+    height: 2px;
+    background: rgba(198, 167, 94, 0.2);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-line::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    animation: line-load 1.5s infinite;
+}
+
+/* Animations */
+@keyframes logo-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes line-load {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Class to hide preloader */
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
